@@ -9,7 +9,7 @@ function App() {
 
   const [loading, setLoading] = useState(true);
   const [backendData, setBackendData] = useState([]);
-  const [url, setUrl] = useState("https://jvns.ca/");
+  const [url, setUrl] = useState("https://rfong.github.io/rflog/");
 
   useEffect(() => {
     setLoading(true);

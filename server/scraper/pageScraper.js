@@ -38,17 +38,17 @@ const scraperObject = {
 					content: linkName,
 					children: [link]
 				})
-
 			} else {
 				await page.goto(link);
 				const childLinks = await page.$$eval('a', as => as.map(a => a.href));
 				const slugRegex = /\/([^/]+)\/?$/;
 				const linkSlug = parsedLink.href.match(slugRegex)[1];
+				const cleanSlug = makeCleanSlug(linkSlug);
 
 				result.children.push({
 					link: link,
-					content: linkSlug,
-					children: childLinks
+					content: cleanSlug,
+					children: [...new Set(childLinks)]
 				})
 			}
 			
@@ -60,12 +60,18 @@ const scraperObject = {
 }
 
 function filterLink(link) {
-
 	if (link.includes('#') || link.startsWith('javascript:') || link.startsWith('mailto:')) {
 		return false;
 	}
 
 	return true;
+}
+
+function makeCleanSlug(slug) {
+	let arr = slug.split("-");
+	let firstLetter = arr[0].charAt(0);
+	arr[0] = firstLetter.toUpperCase() + arr[0].slice(1);
+	return arr.join(" ");
 }
 module.exports = scraperObject;
 
