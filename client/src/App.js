@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import Graph from './components/Graph';
-import './App.css'
 import SiteFrame from './components/SiteFrame';
+import Loader from './components/Loader';
+import './App.css'
+
 
 function App() {
 
   const [loading, setLoading] = useState(true);
   const [backendData, setBackendData] = useState([]);
-  const [url, setUrl] = useState("https://www.recurse.com/");
+  const [url, setUrl] = useState("https://jvns.ca/");
 
   useEffect(() => {
     setLoading(true);
@@ -33,7 +35,7 @@ function App() {
     <div>
       <SiteFrame url={url} setUrl={setUrl}/>
       {(loading || backendData.length === 0) ? (
-        <p>Loading...</p>
+        <Loader/>
       ) : (
         <Graph data={backendData} onClick={setUrl}/>
       )}
