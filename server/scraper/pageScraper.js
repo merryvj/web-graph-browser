@@ -8,7 +8,7 @@ const scraperObject = {
 		console.log("going to " + _url);
 		const page = await browser.newPage();
 		await page.goto(_url);
-		let targetHost = url.parse(_url, true).host;
+		let targetHost = url.parse(_url, true).host.toLowerCase();
 
 		//get all urls on page
 		let links = await page.$$eval('a', as => as.map(a => a.href));
@@ -29,7 +29,7 @@ const scraperObject = {
 		//visit each url to get data
 		for (let link of links) {
 			let parsedLink = url.parse(link, true);
-			if (parsedLink.host != targetHost) {
+			if (parsedLink.host.toLowerCase() != targetHost) {
 				const wwwPattern = /^https?:\/\/(www\.)/i;
 				const linkName = parsedLink.host.replace(wwwPattern, '');
 
@@ -73,6 +73,7 @@ function makeCleanSlug(slug) {
 	arr[0] = firstLetter.toUpperCase() + arr[0].slice(1);
 	return arr.join(" ");
 }
+
 module.exports = scraperObject;
 
 
