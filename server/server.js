@@ -2,6 +2,7 @@ const browserObject = require('./scraper/browser');
 const scraperController = require('./scraper/pageController');
 
 const PORT = process.env.PORT || 5050;
+const cors = require("cors")
 const express = require("express")
 const bodyParser = require('body-parser')
 const app = express()
