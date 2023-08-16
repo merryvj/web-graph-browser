@@ -5,12 +5,14 @@ This is a prototype for a web browsing "tool" that visualizes all links from a w
 
 https://github.com/merryvj/graph-browser/assets/41601131/71165efc-f180-4898-b1ae-5379a9ae09bc
 
+On the backend, an Express server runs scripts to scrape links (with Puppeteer) from a given website.
+
 ### Limitations
 This uses an iFrame to embed the active website. Websites that do not allow embedding will not display. Additionally, clicking links within the embedeed iFrame will not trigger updates to the graph. 
 
 ### Built with
 * React
 * d3.js
-* Puppeteer (for web scraping)
+* Puppeteer
 * Express
 
