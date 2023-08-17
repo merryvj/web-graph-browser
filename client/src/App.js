@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     setLoading(true);
     let link = url;
-    fetch('/api/url', {
+    fetch('https://wobbly-browser-server.onrender.com/api/url', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

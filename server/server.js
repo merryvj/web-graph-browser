@@ -16,8 +16,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-app.post('/api/url', jsonParser, (req, res) => {
-    console.log("hi")
+app.post('https://wobbly-browser-server.onrender.com/api/url', jsonParser, (req, res) => {
     const {url} = req.body;
 
     let browserInstance = browserObject.startBrowser();
