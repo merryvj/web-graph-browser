@@ -17,7 +17,6 @@ const scraperObject = {
 		links = [...new Set(links)];
 		links = links.filter((link) => filterLink(link));
 	
-		console.log(links);
 		const mainTitle = await page.title();
 
 		const result = {
@@ -51,10 +50,9 @@ const scraperObject = {
 					children: [...new Set(childLinks)]
 				})
 			}
-			
-			
 		}
 
+		console.log(result)
 		return result;
 	},
 }

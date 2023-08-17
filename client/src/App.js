@@ -25,6 +25,7 @@ function App() {
       .then(data => {
         setBackendData(data)
         setLoading(false);
+        console.log(data);
       })
       .catch(error => {
         console.log(error);
