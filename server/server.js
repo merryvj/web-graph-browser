@@ -22,5 +22,7 @@ app.post('/api/url', jsonParser, (req, res) => {
     scraperController(browserInstance, url).then((data) => res.json(data));
 });
 
-
-app.listen(PORT, () => {console.log("Server started on port")})
+app.get('/', (req, res) => {
+    res.send('Scraping server up and runnin :D')
+})
+app.listen(PORT, () => {console.log("Server started on port", PORT)})
