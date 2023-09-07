@@ -25,11 +25,18 @@ function App() {
       .then(data => {
         setBackendData(data)
         setLoading(false);
+        fetchSummary();
       })
       .catch(error => {
         console.log(error);
     });
   }, [url])
+
+  const fetchSummary = async() => {
+    fetch('/api/summary')
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }
 
   return (
     <div>

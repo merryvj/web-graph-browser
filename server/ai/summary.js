@@ -1,13 +1,19 @@
 import { OpenAI } from "langchain/llms/openai"
+import { PromptTemplate } from "langchain/prompts";
+import { LLMChain } from "langchain/chains";
 
 import * as dotenv from "dotenv"
 
 dotenv.config();
-export const summarize = async() => {
+export const summarize = async(body) => {
     const model = new OpenAI({})
-    const result = await model.predict("What would be a good company name for a company that makes colorful socks?");
+    const prompt = PromptTemplate.fromTemplate(
+        "Summarize the following webpage in no more than 3 sentences: {page}"
+    );
+    const chain = new LLMChain({ llm: model, prompt });
+    const res = await chain.run(body);
 
-    console.log(result)
+    return res;
 }
 
 
