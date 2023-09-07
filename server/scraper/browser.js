@@ -1,7 +1,9 @@
-const puppeteer = require('puppeteer');
-require("dotenv").config();
+import * as dotenv from "dotenv"
+import puppeteer from "puppeteer";
 
-async function startBrowser(){
+dotenv.config();
+
+export async function startBrowser(){
 	let browser;
 	try {
 	    console.log("Opening the browser......");
@@ -25,7 +27,3 @@ async function startBrowser(){
 	}
 	return browser;
 }
-
-module.exports = {
-	startBrowser
-};
