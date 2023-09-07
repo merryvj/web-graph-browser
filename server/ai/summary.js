@@ -6,7 +6,7 @@ dotenv.config();
 export const summarize = async() => {
     const model = new OpenAI({})
     const result = await model.predict("What would be a good company name for a company that makes colorful socks?");
-    
+
     console.log(result)
 }
 

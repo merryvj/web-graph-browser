@@ -15,10 +15,12 @@ export async function scraper(browser, _url){
 	links = links.filter((link) => filterLink(link));
 
 	const mainTitle = await page.title();
+	const pageBody = await page.$$eval('p', ps => ps.map(p => p.textContent).join(" "));
 
 	const result = {
 		link: _url,
 		content: mainTitle,
+		body: pageBody,
 		children: [],
 	};
 
@@ -48,8 +50,6 @@ export async function scraper(browser, _url){
 			})
 		}
 	}
-
-	console.log(result)
 	return result;
 }
 

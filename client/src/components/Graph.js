@@ -3,7 +3,6 @@ import * as d3 from "d3";
 import { zoom } from "d3-zoom";
 
 function Graph({ data, onClick }) {
-  console.log(data);
   const svgRef = useRef();
 
   const root = d3.hierarchy(data);
