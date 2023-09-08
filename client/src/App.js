@@ -34,7 +34,13 @@ function App() {
   }, [url])
 
   const fetchSummary = async() => {
-    fetch('https://wobbly-browser-server.onrender.com/api/summary')
+    fetch('https://wobbly-browser-server.onrender.com/api/summary', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({body: backendData.body})
+    })
     .then(res => res.json())
     .then(data => setSummary(data))
   }
