@@ -13,9 +13,7 @@ let scrapedData = null;
 const jsonParser = bodyParser.json();
 
 const corsOptions = {
-    origin:'*', 
-    credentials:true,
-    optionSuccessStatus:200,
+    origin: '*'
 }
 
 app.use(cors(corsOptions));
