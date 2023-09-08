@@ -5,12 +5,20 @@ import { scrapeAll } from './scraper/pageController.js';
 import cors from 'cors';
 import { summarize } from './ai/summary.js';
 
-const PORT = process.env.PORT || 5051;
+const PORT = process.env.PORT || 5050;
 const app = express();
 
 let scrapedData = null;
 
 const jsonParser = bodyParser.json();
+
+const corsOptions = {
+    origin:'*', 
+    credentials:true,
+    optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions));
 
 app.post('/api/url', jsonParser, (req, res) => {
     const { url } = req.body;
@@ -22,14 +30,12 @@ app.post('/api/url', jsonParser, (req, res) => {
     });
 });
 
-app.get('/api/summary', async (req, res) => {
-    let summary = "";
-    if (scrapedData) {
-        let {body} = scrapedData;
-        summary = await summarize(body);
-        console.log(summary);
-    }
-    res.json(summary);
+app.post('/api/summary', jsonParser, (req, res) => {
+    const {body} = req.body;
+    console.log("body");
+    summarize(body).then((data => {
+        res.json(data);
+    }))
 })
 
 app.get('/', async (req, res) => {
@@ -40,8 +46,3 @@ app.get('/', async (req, res) => {
 app.listen(PORT, () => {
     console.log('Server started on port', PORT);
 });
-
-// app.post('/api/summarize', async(req, res) => {
-//     let summary = await summarize(req.body);
-//     res.json(summary);
-// })
