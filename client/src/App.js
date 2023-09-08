@@ -10,6 +10,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [backendData, setBackendData] = useState([]);
   const [url, setUrl] = useState("https://rfong.github.io/rflog/");
+  const [summary, setSummary] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -35,11 +36,12 @@ function App() {
   const fetchSummary = async() => {
     fetch('/api/summary')
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => setSummary(data))
   }
 
   return (
     <div>
+      {summary && <div>{summary}</div>}
       <SiteFrame url={url} setUrl={setUrl}/>
       {(loading || backendData.length === 0) ? (
         <Loader/>

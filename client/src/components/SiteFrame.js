@@ -1,13 +1,14 @@
 import React from 'react'
 import { styled } from 'styled-components'
 import LinkInput from './LinkInput'
+import Summary from './Summary'
 
-function SiteFrame({url, setUrl}) {
+function SiteFrame({url, setUrl, body}) {
   return (
     <Wrapper>
         <LinkInput updateBlocks={setUrl} currentURL={url}/>
+        {/* <Summary body={body}/> */}
         <Window>
-            
             <Frame src={url}/>
         </Window>
     </Wrapper>

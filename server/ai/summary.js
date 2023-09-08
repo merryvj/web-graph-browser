@@ -8,7 +8,7 @@ dotenv.config();
 export const summarize = async(body) => {
     const model = new OpenAI({})
     const prompt = PromptTemplate.fromTemplate(
-        "Summarize the following webpage in no more than 3 sentences: {page}"
+        "Summarize the content in the following paragraphs in no more than 3 sentences, no matter what: {page}"
     );
     const chain = new LLMChain({ llm: model, prompt });
     const res = await chain.run(body);
