@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     setLoading(true);
     let link = url;
-    fetch('/api/url', {
+    fetch('https://wobbly-browser-server.onrender.com/api/url', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ function App() {
   }, [url])
 
   const fetchSummary = async() => {
-    fetch('/api/summary')
+    fetch('https://wobbly-browser-server.onrender.com/api/summary')
     .then(res => res.json())
     .then(data => setSummary(data))
   }
