@@ -41,8 +41,7 @@ function App() {
 
   return (
     <div>
-      {summary && <div>{summary}</div>}
-      <SiteFrame url={url} setUrl={setUrl}/>
+      <SiteFrame url={url} setUrl={setUrl} summary={summary}/>
       {(loading || backendData.length === 0) ? (
         <Loader/>
       ) : (

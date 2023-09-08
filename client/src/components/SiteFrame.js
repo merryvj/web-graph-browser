@@ -1,13 +1,12 @@
 import React from 'react'
 import { styled } from 'styled-components'
 import LinkInput from './LinkInput'
-import Summary from './Summary'
 
-function SiteFrame({url, setUrl, body}) {
+function SiteFrame({url, setUrl, summary}) {
   return (
     <Wrapper>
         <LinkInput updateBlocks={setUrl} currentURL={url}/>
-        {/* <Summary body={body}/> */}
+        <Summary>{summary}</Summary>
         <Window>
             <Frame src={url}/>
         </Window>
@@ -36,6 +35,13 @@ const Frame = styled.iframe`
     scrollbar-width: none;
 `
 
+const Summary = styled.div`
+    border: solid 1px black;
+    border-top: none;
+    padding: 4px;
+    background-color: white;
+    
+`
 const Wrapper = styled.div`
     position: fixed;
     top: 0;
