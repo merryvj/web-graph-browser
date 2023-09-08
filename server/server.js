@@ -5,7 +5,7 @@ import { scrapeAll } from './scraper/pageController.js';
 import cors from 'cors';
 import { summarize } from './ai/summary.js';
 
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5051;
 const app = express();
 
 let scrapedData = null;
@@ -30,7 +30,6 @@ app.post('/api/url', jsonParser, (req, res) => {
 
 app.post('/api/summary', jsonParser, (req, res) => {
     const {body} = req.body;
-    console.log("body");
     summarize(body).then((data => {
         res.json(data);
     }))

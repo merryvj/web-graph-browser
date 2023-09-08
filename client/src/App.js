@@ -26,20 +26,20 @@ function App() {
       .then(data => {
         setBackendData(data)
         setLoading(false);
-        fetchSummary();
+        fetchSummary(data.body);
       })
       .catch(error => {
         console.log(error);
     });
   }, [url])
 
-  const fetchSummary = async() => {
+  const fetchSummary = async(body) => {
     fetch('https://wobbly-browser-server.onrender.com/api/summary', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({body: backendData.body})
+      body: JSON.stringify({body: body})
     })
     .then(res => res.json())
     .then(data => setSummary(data))

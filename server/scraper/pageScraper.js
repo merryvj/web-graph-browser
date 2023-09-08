@@ -5,7 +5,9 @@ export async function scraper(browser, _url){
 	console.log("going to " + _url);
 	const page = await browser.newPage();
 	await page.goto(_url);
+	await page.waitForSelector('body');
 	let targetHost = url.parse(_url, true).host.toLowerCase();
+
 
 	//get all urls on page
 	let links = await page.$$eval('a', as => as.map(a => a.href));
